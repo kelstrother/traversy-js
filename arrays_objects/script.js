@@ -1,8 +1,8 @@
-//!           ARRAY LITERAL                     
+//!           ARRAY LITERAL
 // const numbers = [12, 42, 35, 43, 28];
 // console.log(numbers);
 
-//!             ARRAY CONSTRUCTOR                 
+//!             ARRAY CONSTRUCTOR
 // const fruits = new Array('apple', 'grape', 'orange', 'kiwi');
 // console.log(fruits);
 
@@ -22,7 +22,7 @@
 
 // console.log(x);
 
-//!         ARRAY METHODS           
+//!         ARRAY METHODS
 // let x;
 // const arr = [34, 54, 65, 78, 15];
 
@@ -45,13 +45,13 @@
 //?   .splice (returns specified group of values. allows 2 arguments (start index, stop index )removes unspecified values & changes og array)
 // x = arr.splice(2, 1)
 //?   chaining methods
-// x = arr.splice(1, 4).reverse().toString().charAt(0); 
+// x = arr.splice(1, 4).reverse().toString().charAt(0);
 
 // console.log('x = ', x);
 //~ ///////////////////////////////////////////////////
-//!         NESTING, CONCAT, SPREAD OPERATOR           
+//!         NESTING, CONCAT, SPREAD OPERATOR
 //~ ///////////////////////////////////////////////////
-//? nesting an array within an array 
+//? nesting an array within an array
 // let x;
 
 // const fruits = ['apple', 'pear', 'orange'];
@@ -73,7 +73,7 @@
 // const arr = [1, 2, [3, 4], 5, [6, 7], 8];
 // x = arr.flat();
 
-//!   STATIC ARRAY METHODS  (built in methods on the Array object)    
+//!   STATIC ARRAY METHODS  (built in methods on the Array object)
 //?   isArray(checks to see if it is an array (returns true/false))
 // x = Array.isArray(fruits);
 //?   .from(creates an array from an array like value.(useful with html collections and node lists))
@@ -85,16 +85,16 @@
 // x = Array.of(a, b, c);
 // console.log(x);
 //~ ///////////////////////////////////////////////////
-//!             ARRAY CHALLENGES                       
+//!             ARRAY CHALLENGES
 //~ ///////////////////////////////////////////////////
-//!  challenge 1 
+//!  challenge 1
 //,  expected result: [6, 5, 4, 3, 2, 1, 0];
 // const arr = [1, 2, 3, 4, 5];
 // arr.reverse().push(0);
 // arr.unshift(6);
 // console.log(arr);
 
-//!  challenge 2 
+//!  challenge 2
 //,  Combine arr1 and arr2 into a new array called arr3
 //,  Be sure to remove the extra 5
 // const arr1 = [1, 2, 3, 4, 5];
@@ -153,7 +153,7 @@
 
 // console.log(x);
 //~ ////////////////////////////////////////////////////////////
-//!           OBJECT SPREAD OPERATOR & METHODS                  
+//!           OBJECT SPREAD OPERATOR & METHODS
 //~ ////////////////////////////////////////////////////////////
 let x;
 //~ one way of creating an object
@@ -191,21 +191,84 @@ let x;
 // console.log(x);
 
 //~ ////////////////////////////////////////////////////////////
-//!           DESTRUCTURING & NAMING                           
+//!           DESTRUCTURING & NAMING
 //~ ////////////////////////////////////////////////////////////
-const todo = {
-  id: 1,
-  title: 'Take out trash',
-  user: {
-    name: 'Teddy'
-  }
-}
+// const todo = {
+//   id: 1,
+//   title: 'Take out trash',
+//   user: {
+//     name: 'Teddy'
+//   }
+// }
 
-const { id, title, user: { name } } = todo;
-console.log(id, title, name);
+// const { id, title, user: { name } } = todo;
+// console.log(id, title, name);
 
-const numbers = [12, 35, 53, 22];
-// ~  rest operator(...) returns the rest of the values into a seperate array
-const [first, second, ...nums] = numbers;
+// const numbers = [12, 35, 53, 22];
+// // ~  rest operator(...) returns the rest of the values into a seperate array
+// const [first, second, ...nums] = numbers;
 
-console.log(first, second, nums);
+// console.log(first, second, nums);
+//~ ////////////////////////////////////////////////////////////
+//!           JSON (JAVASCRIPT OBJECT NOTATION)
+//~ ////////////////////////////////////////////////////////////
+// const post = {
+//   id: 1,
+//   title: 'Post One',
+//   body: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis, quidem? Sed ad nihil aut iusto perferendis cum dignissimos delectus, et, rem illo necessitatibus recusandae dolorem ratione non voluptatum praesentium? Ex.'
+// };
+// // ?  CONVERT OBJECT TO A JSON STRING (useful for adding things to local storage)
+// const str = JSON.stringify(post);
+// // ?  PARSE CONVERTS OBJECT TO A JSON OBJECT
+// const obj = JSON.parse(str);
+// console.log(obj);
+
+//, ////////////////////////////////////////////////////////////
+//!                OBJECT CHALLENGE
+//, ////////////////////////////////////////////////////////////
+// ?  step 1
+//  Create an array of objects called `library`. Add 3 objects with a property of `title`, `author`, `status`. Title and author should be strings (whatever value you want) and status should be another object with the properties of `own`, `reading` and `read`. Which should all be boolean values. For all status, set `own` to `true` and `reading` and `read` to false.
+const library = [
+  {
+    title: "Enders Game",
+    author: "Orson Scott Card",
+    status: {
+      own: true,
+      reading: false,
+      read: false,
+    },
+  },
+  {
+    title: "Ender in Exile",
+    author: "Orson Scott Card",
+    status: {
+      own: true,
+      reading: false,
+      read: false,
+    },
+  },
+  {
+    title: "The Foundation",
+    author: "Isaac Asimov",
+    status: {
+      own: true,
+      reading: false,
+      read: false,
+    },
+  },
+];
+// ?  step 2
+//  You finished reading all of the books. Set the `read` value for all of them to true. Do not edit the initial object. Set the values using dot notation.
+library[0].status.read = true;
+library[1].status.read = true;
+library[2].status.read = true;
+console.log(library);
+
+// ?  step 3
+//Destructure the title from the first book and rename the variable to firstBook
+//, my attempt WRONG -> library[0].title = 'firstBook';
+const { title: firstBook } = library[0];
+// ?  step 4
+//  Turn the library object into a JSON string
+const str = JSON.stringify(library);
+console.log(str);
