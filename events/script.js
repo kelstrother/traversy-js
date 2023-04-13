@@ -152,74 +152,119 @@ const logo = document.querySelector("img");
 //!                INPUT EVENTS                   //
 //~ /////////////////////////////////////////////////
 
-const itemInput = document.getElementById("item-input");
-const priorityInput = document.getElementById("priority-input");
-const checkbox = document.getElementById("checkbox");
-const heading = document.querySelector("h1");
+// const itemInput = document.getElementById("item-input");
+// const priorityInput = document.getElementById("priority-input");
+// const checkbox = document.getElementById("checkbox");
+// const heading = document.querySelector("h1");
 
-function onInput(e) {
-  // heading.textContent = e.target.value;
-}
+// function onInput(e) {
+//   // heading.textContent = e.target.value;
+// }
 
-function onChecked(e) {
-  const isChecked = e.target.checked;
-  // heading.textContent = isChecked ? 'Checked' : 'Not Checked'
-}
+// function onChecked(e) {
+//   const isChecked = e.target.checked;
+//   // heading.textContent = isChecked ? 'Checked' : 'Not Checked'
+// }
 
-function onFocus() {
-  // console.log('input is focused');
-  itemInput.style.outlineStyle = 'groove'
-  itemInput.style.outlineWidth = '1px'
-  itemInput.style.outlineColor = 'red'
-}
+// function onFocus() {
+//   // console.log('input is focused');
+//   itemInput.style.outlineStyle = 'groove'
+//   itemInput.style.outlineWidth = '1px'
+//   itemInput.style.outlineColor = 'red'
+// }
 
-function onBlur() {
-  // console.log('input is not focused');
-  itemInput.style.outlineStyle = 'none'
-}
-itemInput.addEventListener('input', onInput)
-priorityInput.addEventListener('change', onInput) //* change is same as input
-checkbox.addEventListener('input', onChecked)
-itemInput.addEventListener('focus', onFocus)
-itemInput.addEventListener('blur', onBlur)
+// function onBlur() {
+//   // console.log('input is not focused');
+//   itemInput.style.outlineStyle = 'none'
+// }
+// itemInput.addEventListener('input', onInput)
+// priorityInput.addEventListener('change', onInput) //* change is same as input
+// checkbox.addEventListener('input', onChecked)
+// itemInput.addEventListener('focus', onFocus)
+// itemInput.addEventListener('blur', onBlur)
 
 //~ /////////////////////////////////////////////////
 //!                FORM SUBMISSIONS                //
 //~ /////////////////////////////////////////////////
 
-const form = document.getElementById('item-form');
+// const form = document.getElementById('item-form');
 
-function onSubmit(e) {
-  e.preventDefault();
-  const item = document.getElementById('item-input').value
-  const priority = document.getElementById('priority-input').value
+// function onSubmit(e) {
+//   e.preventDefault();
+//   const item = document.getElementById('item-input').value
+//   const priority = document.getElementById('priority-input').value
 
-  if (item === '' || priority === '0') {
-    alert('Please fill in all fields.')
-    return;
-  }
+//   if (item === '' || priority === '0') {
+//     alert('Please fill in all fields.')
+//     return;
+//   }
 
-  console.log(item, priority);
-}
+//   console.log(item, priority);
+// }
 //? USING FORMDATA METHOD
-function onSubmit2(e) {
-  e.preventDefault()
+// function onSubmit2(e) {
+//   e.preventDefault()
 
   // !  initializing FormData
-  const formData = new FormData(form);
+  // const formData = new FormData(form);
 
   //! get() method to get the values
   // const item = formData.get('item')
   // const priority = formData.get('priority')
 
   //! entries() method to get the values
-  const entries = formData.entries();
+  // const entries = formData.entries();
 
   // console.log(entries);
 
-  for (let entry of entries) {
-    console.log(entry[1]);
-  }
-}
+//   for (let entry of entries) {
+//     console.log(entry[1]);
+//   }
+// }
 
-form.addEventListener('submit', onSubmit2)
+// form.addEventListener('submit', onSubmit2)
+
+//~ /////////////////////////////////////////////////
+//!                EVENT BUBBLING                //
+//~ /////////////////////////////////////////////////
+
+// const button = document.querySelector('form button');
+// const div = document.querySelector('form div:nth-child(2)');
+// const form = document.querySelector('form');
+
+
+
+// button.addEventListener('click', (e) => {
+//   alert('Button was clicked.');
+//   e.stopPropagation()   //?   stops from running click events on parent elements causing bubbling
+// })
+
+// div.addEventListener('click', () => {
+//   alert('Div was clicked')
+// })
+
+// form.addEventListener('click', () => {
+  //   alert('form was clicked')
+  // })
+
+  //~ /////////////////////////////////////////////////
+  //!         EVENT DELEGATION & MULTIPLE EVENTS        //
+  //~ /////////////////////////////////////////////////
+  // const listItems = document.querySelectorAll('li');
+  // const list = document.querySelector('ul');
+  
+  // !    ADDING LISTENERS TO MULTIPLE ELEMENTS
+  //  ~  METHOD 1 (not the best way)
+//   listItems.forEach((item) => {
+  //     item.addEventListener('click', (e) => {
+    //       e.target.remove();
+    //     })
+    //   })
+    // !   EVENT DELEGATION
+    // ~ adding a single listener to the parent and targeting from there
+    // list.addEventListener('click', (e) => {
+      //   if (e.target.tagName === 'LI') {
+        //     e.target.remove()
+        //   }
+        // })
+
