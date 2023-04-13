@@ -76,3 +76,92 @@
 // const listItems3 = document.getElementsByTagName('li')
 // console.log(listItems3[0].innerText);
 
+//~ /////////////////////////////////////////////////
+//!           CREATE & APPEND ELEMENTS             //
+//~ /////////////////////////////////////////////////
+
+// const div = document.createElement("div");
+// div.className = "my-element";
+// div.id = "my-element";
+// div.setAttribute("title", "My Element");
+// div.innerText = "Fuckin\' A Man"
+
+// ?  creating a text node to append text content inside div
+// const text = document.createTextNode("Fuckin' A Man");
+// div.appendChild(text)
+
+// ?   inserting div into the DOM
+// document.body.appendChild(div);
+// document.querySelector('ul').appendChild(div);
+// console.log(div);
+
+//~ /////////////////////////////////////////////////
+//!           innerHTML vs createElement()         //
+//~ /////////////////////////////////////////////////
+
+//, ////// QUICK AND DIRTY /////////////
+//* innerHTML causes the browser to re-parse all the DOM nodes inside the ul
+//* can also cause issues regarding event handlers
+
+// function createListItem(item) {
+//   const li = document.createElement('li');
+
+//   li.innerHTML = `${item}
+//           <button class="remove-item btn-link text-red">
+//             <i class="fa-solid fa-xmark"></i>
+//           </button>`
+//   document.querySelector('.items').appendChild(li);
+// }
+// createListItem('Eggs');
+
+
+//*  ////// CLEAN AND PERFORMANT //////////
+// function createNewItem(item) {
+//   const li = document.createElement("li"); // ~  create the list tag
+//   li.appendChild(document.createTextNode(item)); // ~  create the text and append it to the li
+
+//   const button = document.createElement("button"); // ~  create the button
+//   button.className = "remove-item btn-link text-red"; // ~  add classnames to button
+
+//   const icon = document.createElement("i"); // ~  create icon element
+//   icon.className = "fa-solid fa-xmark"; // ~  add classnames to icon
+
+//   button.appendChild(icon); // ~  inserting icon inside the button
+//   li.appendChild(button); // ~  inserting the button inside the li
+//   document.querySelector(".items").appendChild(li); // ~  inserting the li inside the ul
+// }
+
+//~ /////////////////////////////////////////////////
+//!           MAKING IT MORE REUSABLE         //
+//~ /////////////////////////////////////////////////
+
+function createNewItem(item) {
+  const li = document.createElement("li");
+  li.appendChild(document.createTextNode(item));
+
+  const button = createButton("remove-item btn-link text-red");
+
+  li.appendChild(button);
+  document.querySelector(".items").appendChild(li);
+}
+
+// ?  function to create button
+function createButton(classes) {
+  const button = document.createElement("button");
+  button.className = classes;
+
+  const icon = createIcon("fa-solid fa-xmark"); //~ calling createIcon inside button
+  button.appendChild(icon); //~ and appending it
+
+  return button;
+}
+
+// ?  function to create icon
+function createIcon(classes) {
+  const icon = document.createElement("i");
+  icon.className = classes;
+  return icon
+}
+
+createNewItem('Cheese');
+createNewItem('Lindt');
