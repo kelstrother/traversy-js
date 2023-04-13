@@ -56,7 +56,12 @@ header h1 {
   background: transparent;
   outline: none;
 }
-
+#checkbox {
+  margin: 0 auto;
+  margin-block-end: 1.5rem;
+  height: 1rem;
+  width: 1rem;
+}
 /* Buttons */
 .btn {
   background-color: #333;

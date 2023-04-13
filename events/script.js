@@ -49,9 +49,7 @@
 // const onDrag = () => console.log('drag event');
 // const onDragEnd = () => console.log('drag end event');
 
-
-
-// //~ EVENT LISTENERS  //////////////////// 
+// //~ EVENT LISTENERS  ////////////////////
 // logo.addEventListener('click', onClick)
 // logo.addEventListener('dblclick', onDoubleClick)
 // logo.addEventListener('contextmenu', onRightClick)
@@ -67,17 +65,17 @@
 //~ /////////////////////////////////
 //!      THE EVENT OBJECT          //
 //~ /////////////////////////////////
-const logo = document.querySelector('img');
+const logo = document.querySelector("img");
 
 // function onClick(e) {
-  // console.log(e.target);
-  // console.log(e.currentTarget);
-  // console.log(e.timeStamp);
-  // console.log('X: ', e.clientX, 'Y: ', e.clientY);
-  // console.log('X:', e.offsetX, 'Y:', e.offsetY);
-  // console.log('X:', e.pageX, 'Y:', e.pageY);
-  // console.log('X:', e.screenX, 'Y:', e.screenY);
-  // e.target.style.background = 'black'
+// console.log(e.target);
+// console.log(e.currentTarget);
+// console.log(e.timeStamp);
+// console.log('X: ', e.clientX, 'Y: ', e.clientY);
+// console.log('X:', e.offsetX, 'Y:', e.offsetY);
+// console.log('X:', e.pageX, 'Y:', e.pageY);
+// console.log('X:', e.screenX, 'Y:', e.screenY);
+// e.target.style.background = 'black'
 // }
 
 // function onDrag(e) {
@@ -91,7 +89,6 @@ const logo = document.querySelector('img');
 //   console.log(e.target);
 //   console.log(e.currentTarget);
 // })
-
 
 //* - `target` - The element that triggered the event
 //* - `currentTarget` - The element that the event listener is attached to (These are the same in this case
@@ -108,7 +105,7 @@ const logo = document.querySelector('img');
 
 //~ /////////////////////////////////////////////////
 //!      KEYBOARD EVENTS & KEY PROPERTIES          //
-//~ ///////////////////////////////////////////////// 
+//~ /////////////////////////////////////////////////
 // const itemInput = document.getElementById('item-input');
 
 // const onKeyPress = e => {
@@ -120,12 +117,12 @@ const logo = document.querySelector('img');
 // }
 
 // const onKeyDown = e => {
-  // ? key
-  // if(e.key === 'Enter') {
-  //   alert('You Pressed Enter')
-  // }
-  // document.querySelector('h1').innerText = e.key;
-  // ? keyCode
+// ? key
+// if(e.key === 'Enter') {
+//   alert('You Pressed Enter')
+// }
+// document.querySelector('h1').innerText = e.key;
+// ? keyCode
 //   if (e.keyCode === 13) {
 //     alert('You Pressed Enter')
 //   }
@@ -147,8 +144,82 @@ const logo = document.querySelector('img');
 //   }
 // }
 
-
-
 // itemInput.addEventListener('keypress', onKeyPress);
 // itemInput.addEventListener('keyup', onKeyUp);
 // itemInput.addEventListener('keydown', onKeyDown);
+
+//~ /////////////////////////////////////////////////
+//!                INPUT EVENTS                   //
+//~ /////////////////////////////////////////////////
+
+const itemInput = document.getElementById("item-input");
+const priorityInput = document.getElementById("priority-input");
+const checkbox = document.getElementById("checkbox");
+const heading = document.querySelector("h1");
+
+function onInput(e) {
+  // heading.textContent = e.target.value;
+}
+
+function onChecked(e) {
+  const isChecked = e.target.checked;
+  // heading.textContent = isChecked ? 'Checked' : 'Not Checked'
+}
+
+function onFocus() {
+  // console.log('input is focused');
+  itemInput.style.outlineStyle = 'groove'
+  itemInput.style.outlineWidth = '1px'
+  itemInput.style.outlineColor = 'red'
+}
+
+function onBlur() {
+  // console.log('input is not focused');
+  itemInput.style.outlineStyle = 'none'
+}
+itemInput.addEventListener('input', onInput)
+priorityInput.addEventListener('change', onInput) //* change is same as input
+checkbox.addEventListener('input', onChecked)
+itemInput.addEventListener('focus', onFocus)
+itemInput.addEventListener('blur', onBlur)
+
+//~ /////////////////////////////////////////////////
+//!                FORM SUBMISSIONS                //
+//~ /////////////////////////////////////////////////
+
+const form = document.getElementById('item-form');
+
+function onSubmit(e) {
+  e.preventDefault();
+  const item = document.getElementById('item-input').value
+  const priority = document.getElementById('priority-input').value
+
+  if (item === '' || priority === '0') {
+    alert('Please fill in all fields.')
+    return;
+  }
+
+  console.log(item, priority);
+}
+//? USING FORMDATA METHOD
+function onSubmit2(e) {
+  e.preventDefault()
+
+  // !  initializing FormData
+  const formData = new FormData(form);
+
+  //! get() method to get the values
+  // const item = formData.get('item')
+  // const priority = formData.get('priority')
+
+  //! entries() method to get the values
+  const entries = formData.entries();
+
+  // console.log(entries);
+
+  for (let entry of entries) {
+    console.log(entry[1]);
+  }
+}
+
+form.addEventListener('submit', onSubmit2)
