@@ -3,11 +3,11 @@ function clock() {
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext("2d");
 
-  //setup canvas
-  ctx.save(); //save default state
+  // Setup canvas
+  ctx.save(); // save the default state
   ctx.clearRect(0, 0, 500, 500);
-  ctx.translate(250, 250); // put 0, 0 in the center
-  ctx.rotate(-Math.PI / 2); // rotate clock - 90deg
+  ctx.translate(250, 250); // Put 0,0 in the middle
+  ctx.rotate(-Math.PI / 2); // Rotate clock -90deg
 
   // Set default styles
   ctx.strokeStyle = "#000000";
@@ -15,7 +15,7 @@ function clock() {
   ctx.lineWidth = 5;
   ctx.lineCap = "round";
 
-  //Draw clock face / border
+  // Draw clock face/border
   ctx.save();
   ctx.beginPath();
   ctx.lineWidth = 14;
@@ -25,7 +25,7 @@ function clock() {
   ctx.fill();
   ctx.restore();
 
-  // draw hour ticks
+  // Draw hour lines
   ctx.save();
   for (let i = 0; i < 12; i++) {
     ctx.beginPath();
@@ -34,8 +34,9 @@ function clock() {
     ctx.lineTo(120, 0);
     ctx.stroke();
   }
-  ctx.restore()
-  // draw minute ticks
+  ctx.restore();
+
+  // Draw minute lines
   ctx.save();
   ctx.lineWidth = 4;
   for (let i = 0; i < 60; i++) {
@@ -48,13 +49,15 @@ function clock() {
     ctx.rotate(Math.PI / 30);
   }
   ctx.restore();
-  //Get current time
+
+  // Get current time
   const hr = now.getHours() % 12;
   const min = now.getMinutes();
   const sec = now.getSeconds();
+
   // console.log(`${hr}:${min}:${sec}`);
 
-  // draw hour hand
+  // Draw hour hand
   ctx.save();
   ctx.rotate(
     (Math.PI / 6) * hr + (Math.PI / 360) * min + (Math.PI / 21600) * sec
@@ -67,7 +70,7 @@ function clock() {
   ctx.stroke();
   ctx.restore();
 
-  // draw minute hand
+  // Draw min hand
   ctx.save();
   ctx.rotate((Math.PI / 30) * min + (Math.PI / 1800) * sec);
   ctx.strokeStyle = "#800000";
@@ -78,7 +81,7 @@ function clock() {
   ctx.stroke();
   ctx.restore();
 
-  // draw second hand
+  // Draw sec hand
   ctx.save();
   ctx.rotate((sec * Math.PI) / 30);
   ctx.strokeStyle = "#FF7F50";
@@ -99,4 +102,3 @@ function clock() {
 }
 
 requestAnimationFrame(clock);
-
