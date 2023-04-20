@@ -1,3 +1,11 @@
+const faceColor = document.querySelector('#face-color');
+const borderColor = document.querySelector('#border-color')
+const lineColor = document.querySelector('#line-color')
+const largeHand = document.querySelector('#large-hand-color')
+const secondHand = document.querySelector('#second-hand-color')
+const saveImage = document.querySelector('#save-btn')
+
+
 function clock() {
   const now = new Date();
   const canvas = document.getElementById("canvas");
@@ -10,8 +18,8 @@ function clock() {
   ctx.rotate(-Math.PI / 2); // rotate clock - 90deg
 
   // Set default styles
-  ctx.strokeStyle = "#000000";
-  ctx.fillStyle = "#f4f4f4";
+  ctx.strokeStyle = `${lineColor}.value`;
+  ctx.fillStyle = `${faceColor}.value`;
   ctx.lineWidth = 5;
   ctx.lineCap = "round";
 
@@ -19,7 +27,7 @@ function clock() {
   ctx.save();
   ctx.beginPath();
   ctx.lineWidth = 14;
-  ctx.strokeStyle = "#800000";
+  ctx.strokeStyle = `${borderColor}.value`;
   ctx.arc(0, 0, 142, 0, Math.PI * 2, true);
   ctx.stroke();
   ctx.fill();
@@ -59,7 +67,7 @@ function clock() {
   ctx.rotate(
     (Math.PI / 6) * hr + (Math.PI / 360) * min + (Math.PI / 21600) * sec
   );
-  ctx.strokeStyle = "#800000";
+  ctx.strokeStyle = `${largeHand}.value`;
   ctx.lineWidth = 14;
   ctx.beginPath();
   ctx.moveTo(-20, 0);
@@ -70,7 +78,7 @@ function clock() {
   // draw minute hand
   ctx.save();
   ctx.rotate((Math.PI / 30) * min + (Math.PI / 1800) * sec);
-  ctx.strokeStyle = "#800000";
+  ctx.strokeStyle = `${largeHand}.value`;
   ctx.lineWidth = 10;
   ctx.beginPath();
   ctx.moveTo(-28, 0);
@@ -81,8 +89,8 @@ function clock() {
   // draw second hand
   ctx.save();
   ctx.rotate((sec * Math.PI) / 30);
-  ctx.strokeStyle = "#FF7F50";
-  ctx.fillStyle = "#FF7F50";
+  ctx.strokeStyle = `${secondHand}.value`;
+  ctx.fillStyle = `${secondHand}.value`;
   ctx.lineWidth = 6;
   ctx.beginPath();
   ctx.moveTo(-30, 0);
@@ -97,6 +105,10 @@ function clock() {
 
   requestAnimationFrame(clock);
 }
+
+saveImage.addEventListener('click', function(e) {
+  console.log(e);
+})
 
 requestAnimationFrame(clock);
 
