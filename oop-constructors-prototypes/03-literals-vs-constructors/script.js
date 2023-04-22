@@ -1,21 +1,21 @@
-const strLit = 'Hello';
-const strObj = new String('Hello');
+const strLit = "Hello";
+const strObj = new String("Hello");
 
 console.log(strLit, typeof strLit);
 console.log(strObj, typeof strObj);
 
-// Boxing
+//~ Boxing
 console.log(strLit.toUpperCase());
-// Even though the strLit variable is a string literal for a primitive type, it can still use the toUpperCase() method because the string literal is converted to a String object behind the scenes. This is called boxing.
+//~ Even though the strLit variable is a string literal for a primitive type, it can still use the toUpperCase() method because the string literal is converted to a String object behind the scenes. This is called boxing.
 console.log(strLit[0]);
 
-// Unboxing
+// ~Unboxing
 console.log(strObj.valueOf(), typeof strObj.valueOf());
 
 console.log(strLit.constructor);
 console.log(strObj.constructor);
 
-// The instanceof operator returns true if an object is an instance of a constructor. It returns false if it is a literal.
+//~ The instanceof operator returns true if an object is an instance of a constructor. It returns false if it is a literal.
 console.log(strLit instanceof String);
 console.log(strObj instanceof String);
 
@@ -46,13 +46,13 @@ console.log(funcLit, typeof funcLit);
 
 console.log(funcLit(5));
 
-const funcObj = new Function('x', 'return x * x');
+const funcObj = new Function("x", "return x * x");
 
-// We can execute the function created with the Function constructor
+//~ We can execute the function created with the Function constructor
 console.log(funcObj(3));
 
 const obj1 = {};
-const obj2 = new Object(); // Behind the scenes, JS does this for the previous line as well
+const obj2 = new Object(); //~ Behind the scenes, JS does this for the previous line as well
 
 console.log(obj1, typeof obj1);
 console.log(obj2, typeof obj2);

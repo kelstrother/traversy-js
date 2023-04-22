@@ -4,7 +4,7 @@ function Shape(name) {
 
 Shape.prototype.logName = function () {
   console.log(`Shape Name: ${this.name}`);
-};
+}
 
 function Rectangle(name, height, width) {
   Shape.call(this, name);
@@ -13,30 +13,20 @@ function Rectangle(name, height, width) {
   this.width = width;
 }
 
-// Inherits Shape prototypes
-Rectangle.prototype = Object.create(Shape.prototype);
-
-Rectangle.prototype.logName = function () {
-  console.log(`Rectangle Name: ${this.name}`);
-};
+//~ Inherits Shape prototypes
+Rectangle.prototype = Object.create(Shape.prototype)
 
 function Circle(name, radius) {
   Shape.call(this, name);
 
-  this.radius = radius;
-}
+  this.radius = radius
+} 
 
-// Inherits Shape prototypes
-Circle.prototype = Object.create(Shape.prototype);
+const rect = new Rectangle('Rectangle 1', 20, 10);
 
-// Set prototype constructors
-Rectangle.prototype.constructor = Rectangle;
-Rectangle.prototype.constructor = Rectangle;
+const cir = new Circle('Circle 1', 20);
 
-const rect = new Rectangle('Rectangle 1', 20, 20);
-const cir = new Circle('Circle 1', 30);
 
 // console.log(rect, cir);
 
 rect.logName();
-cir.logName();
