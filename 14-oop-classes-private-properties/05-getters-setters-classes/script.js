@@ -5,15 +5,19 @@ class Person {
   }
 
   get firstName() {
-    return this.capitalizeFirst(this._firstName);
+    // return this._firstName.charAt(0).toUpperCase() + this._firstName.slice(1);
+    //~ after creating a separate function to capitalize first letter
+    return this.capitalizeFirst(this._firstName)
   }
-
+  
   set firstName(value) {
+    // this._firstName = value.charAt(0).toUpperCase() + value.slice(1);
+    //~ after creating a separate function to capitalize first letter
     this._firstName = this.capitalizeFirst(value);
   }
 
   get lastName() {
-    return this.capitalizeFirst(this._lastName);
+    return this.capitalizeFirst(this._lastName)
   }
 
   set lastName(value) {
@@ -21,7 +25,7 @@ class Person {
   }
 
   get fullName() {
-    return `${this.firstName} ${this.lastName}`;
+    return `${this.firstName} ${this.lastName}`
   }
 
   capitalizeFirst(value) {
@@ -29,11 +33,11 @@ class Person {
   }
 }
 
-const person1 = new Person('john', 'doe');
+const person1 = new Person("apollo", "strother");
 console.log(person1.firstName);
 console.log(person1.lastName);
 
-person1.firstName = 'joe';
-person1.lastName = 'smith';
-console.log(person1.fullName);
+person1.firstName = 'theo';
+person1.lastName = 'the iii'
 console.log(person1);
+console.log(person1.fullName);

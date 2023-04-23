@@ -1,14 +1,13 @@
 class App {
   constructor() {
-    this.serverName = 'localhost';
+    this.serverName = "localhost";
 
-    document
-      .querySelector('button')
-      .addEventListener('click', this.getServerName.bind(this));
+    //~ common place to put event listeners
+    //~ because they are called automatically
+    document.querySelector('button').addEventListener('click', this.getServerName.bind(this))
   }
-
   getServerName() {
-    console.log(this);
+    console.log(this.serverName);
   }
 }
 
